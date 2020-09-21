@@ -49,14 +49,131 @@ function App() {
           }}
         >
           <div style={{ width: "50vw", height: "70vw" }}>
-            <div style={{ display: "flex", flexDirection: "column", paddingTop: "20px" }}>
-              <input placeholder="Title" style={{marginBottom: "10px", width: "25vw", border: "1px solid white", backgroundColor: "transparent", padding: "10px", borderRadius: "5px", color: "white"}}></input>
-              <input placeholder="Amount" style={{marginBottom: "10px", width: "25vw", border: "1px solid white", backgroundColor: "transparent", padding: "10px", borderRadius: "5px", color: "white"}}></input>
-              <input placeholder="Note" style={{marginBottom: "10px", width: "25vw", border: "1px solid white", backgroundColor: "transparent", padding: "10px", borderRadius: "5px", color: "white"}}></input>
-              <input placeholder="Date" style={{marginBottom: "10px", width: "25vw", border: "1px solid white", backgroundColor: "transparent", padding: "10px", borderRadius: "5px", color: "white"}}></input>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                paddingTop: "10vh",
+              }}
+            >
+              <input
+                placeholder="Title"
+                style={{
+                  marginBottom: "10px",
+                  width: "25vw",
+                  border: "1px solid white",
+                  backgroundColor: "transparent",
+                  padding: "15px",
+                  borderRadius: "5px",
+                  color: "white",
+                }}
+              ></input>
+              <input
+                placeholder="Amount"
+                style={{
+                  marginBottom: "10px",
+                  width: "25vw",
+                  border: "1px solid white",
+                  backgroundColor: "transparent",
+                  padding: "15px",
+                  borderRadius: "5px",
+                  color: "white",
+                }}
+              ></input>
+              <input
+                placeholder="Note"
+                style={{
+                  marginBottom: "10px",
+                  width: "25vw",
+                  border: "1px solid white",
+                  backgroundColor: "transparent",
+                  padding: "15px",
+                  borderRadius: "5px",
+                  color: "white",
+                }}
+              ></input>
+              <input
+                placeholder="Date"
+                style={{
+                  marginBottom: "10px",
+                  width: "25vw",
+                  border: "1px solid white",
+                  backgroundColor: "transparent",
+                  padding: "15px",
+                  borderRadius: "5px",
+                  color: "white",
+                }}
+              ></input>
+              <div
+                style={{
+                  backgroundColor: "#03DAC5",
+                  width: "200px",
+                  padding: "10px",
+                  borderRadius: "20px",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginTop: "5vh",
+                }}
+              >
+                ADD EXPENSE
+              </div>
             </div>
           </div>
-          <div style={{ width: "50vw", height: "70vw" }}></div>
+          <div
+            style={{
+              width: "50vw",
+              height: "70vw",
+              paddingTop: "10vh",
+              paddingRight: "10vw",
+            }}
+          >
+            <div
+              style={{
+                overflowY: "auto",
+                overflowX: "hidden",
+                height: "60vh",
+                width: "40vw",
+                scrollbarWidth: "none",
+              }}
+            >
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e) => (
+                <div className="listEle" id={e}>
+                  <div
+                    style={{
+                      width: "10%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    edit
+                  </div>
+                  <div
+                    style={{
+                      width: "80%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      backgroundColor: "white",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    data
+                  </div>
+                  <div
+                    style={{
+                      width: "10%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    remove
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
