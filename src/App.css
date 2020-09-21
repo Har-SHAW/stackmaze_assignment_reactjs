@@ -50,3 +50,129 @@ input {
   border-radius: 5px;
   color: white;
 }
+
+.date {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: grey;
+  font-size: 12px;
+}
+
+.titleRow {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.title {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: #6200ee;
+}
+
+.amount {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: black;
+}
+
+.note {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: grey;
+  font-size: 13px;
+}
+
+.listEleCorner {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listEleMain {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  padding: 22px;
+}
+
+.list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 70vh;
+  width: 40vw;
+  scrollbar-width: none;
+}
+
+.button {
+  background-color: #03dac5;
+  width: 200px;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 5vh;
+}
+
+.right {
+  width: 50vw;
+  height: 70vw;
+  padding-top: 10vh;
+  padding-right: 10vw;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10vh;
+}
+
+.left {
+  display: flex;
+  flex-direction: row;
+  height: 70vh;
+  margin-left: 10vw;
+}
+
+.totalRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 15vw;
+  height: 20vh;
+  align-items: center;
+}
+
+.topRow {
+  display: flex;
+  flex-direction: row;
+  height: 20vh;
+  justify-content: space-between;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  align-items: center;
+  border-bottom: 1px solid white;
+}
+
+.home {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #6200ee;
+}
