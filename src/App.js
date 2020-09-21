@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { Delete, Edit } from "@material-ui/icons";
 
 function App() {
   return (
@@ -56,54 +57,10 @@ function App() {
                 paddingTop: "10vh",
               }}
             >
-              <input
-                placeholder="Title"
-                style={{
-                  marginBottom: "10px",
-                  width: "25vw",
-                  border: "1px solid white",
-                  backgroundColor: "transparent",
-                  padding: "15px",
-                  borderRadius: "5px",
-                  color: "white",
-                }}
-              ></input>
-              <input
-                placeholder="Amount"
-                style={{
-                  marginBottom: "10px",
-                  width: "25vw",
-                  border: "1px solid white",
-                  backgroundColor: "transparent",
-                  padding: "15px",
-                  borderRadius: "5px",
-                  color: "white",
-                }}
-              ></input>
-              <input
-                placeholder="Note"
-                style={{
-                  marginBottom: "10px",
-                  width: "25vw",
-                  border: "1px solid white",
-                  backgroundColor: "transparent",
-                  padding: "15px",
-                  borderRadius: "5px",
-                  color: "white",
-                }}
-              ></input>
-              <input
-                placeholder="Date"
-                style={{
-                  marginBottom: "10px",
-                  width: "25vw",
-                  border: "1px solid white",
-                  backgroundColor: "transparent",
-                  padding: "15px",
-                  borderRadius: "5px",
-                  color: "white",
-                }}
-              ></input>
+              <input placeholder="Title"></input>
+              <input placeholder="Amount"></input>
+              <input placeholder="Note"></input>
+              <input placeholder="Date"></input>
               <div
                 style={{
                   backgroundColor: "#03DAC5",
@@ -146,19 +103,83 @@ function App() {
                       alignItems: "center",
                     }}
                   >
-                    edit
+                    <Edit style={{ color: "rgba(225, 225, 225, 0.7)" }} />
                   </div>
                   <div
                     style={{
                       width: "80%",
                       display: "flex",
+                      flexDirection: "column",
                       justifyContent: "center",
                       alignItems: "center",
                       backgroundColor: "white",
                       borderRadius: "5px",
+                      padding: "22px",
                     }}
                   >
-                    data
+                    <div
+                      style={{
+                        height: "10%",
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        color: "grey",
+                        fontSize: "12px",
+                      }}
+                    >
+                      15 . 8 . 2020
+                    </div>
+                    <div
+                      style={{
+                        height: "80%",
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      <div
+                        style={{
+                          height: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          color: "#6200EE",
+                        }}
+                      >
+                        Expense Title
+                      </div>
+                      <div
+                        style={{
+                          height: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          fontWeight: "bold",
+                          color: "black",
+                        }}
+                      >
+                        $50,000
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        height: "10%",
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        color: "grey",
+                        fontSize: "13px",
+                      }}
+                    >
+                      <label
+                        style={{
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        <strong>Note:</strong> Note for expense goes here
+                      </label>
+                    </div>
                   </div>
                   <div
                     style={{
@@ -168,7 +189,7 @@ function App() {
                       alignItems: "center",
                     }}
                   >
-                    remove
+                    <Delete style={{ color: "rgba(225, 225, 225, 0.7)" }} />
                   </div>
                 </div>
               ))}
