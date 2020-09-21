@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.expText {
+  font-size: 40px;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  font: Roboto;
+  align-self: flex-end;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.totText {
+  align-self: flex-end;
+  font-size: 25px;
+  font: Roboto;
+  letter-spacing: 0.18px;
+  color: #ffffff;
+  opacity: 1;
+}
