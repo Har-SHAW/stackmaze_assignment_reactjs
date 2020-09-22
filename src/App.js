@@ -3,6 +3,7 @@ import "./App.css";
 import { Delete, Edit } from "@material-ui/icons";
 import axios from "axios";
 import moment from "moment";
+import { PuffLoader } from "react-spinners";
 
 class App extends React.Component {
   constructor(props) {
@@ -12,21 +13,45 @@ class App extends React.Component {
       date: "",
       note: "",
       data: [],
+      isLoading: true,
     };
   }
 
   componentDidMount() {
+    this.setState({
+      isLoading: true,
+    });
     axios
       .get("https://stackmaze.herokuapp.com/expenses")
       .then((response) => {
         console.log(response.data);
         this.setState({
           data: response.data,
+          isLoading: false,
         });
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  delete(str) {
+    if (str !== "") {
+      this.setState({
+        isLoading: true,
+      });
+      axios
+        .delete(`https://stackmaze.herokuapp.com/expenses/${str}`)
+        .then((response) => {
+          console.log(response.data);
+          this.setState({
+            isLoading: false,
+          });
+        })
+        .catch((response) => {
+          console.log(response.data);
+        });
+    }
   }
 
   validate() {
@@ -83,6 +108,34 @@ class App extends React.Component {
   render() {
     return (
       <div className="home">
+        {this.state.isLoading ? (
+          <div
+            style={{
+              height: "100vh",
+              width: "100vw",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              position: "absolute",
+              top: "0px",
+              left: "0px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                height: "300px",
+                width: "300px",
+                backgroundColor: "white",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <PuffLoader />
+            </div>
+          </div>
+        ) : null}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div className="topRow">
             <div className="expText">MY EXPENSES</div>
@@ -139,6 +192,9 @@ class App extends React.Component {
                   className="button"
                   onClick={() => {
                     if (this.validate()) {
+                      this.setState({
+                        isLoading: true,
+                      });
                       const headers = {
                         "Access-Control-Allow-Origin": "*",
                         "Content-Type": "application/json",
@@ -149,6 +205,7 @@ class App extends React.Component {
                         note: this.state.note,
                       };
                       console.log("validated");
+
                       axios
                         .post(
                           "https://stackmaze.herokuapp.com/expenses",
@@ -159,6 +216,9 @@ class App extends React.Component {
                         )
                         .then((response) => {
                           console.log(response.data);
+                          this.setState({
+                            isLoading: false,
+                          });
                         })
                         .catch((response) => {
                           console.log(response.data);
@@ -193,7 +253,12 @@ class App extends React.Component {
                         </label>
                       </div>
                     </div>
-                    <div className="listEleCorner">
+                    <div
+                      className="listEleCorner"
+                      onClick={() => {
+                        this.delete(e.id);
+                      }}
+                    >
                       <Delete style={{ color: "rgba(225, 225, 225, 0.7)" }} />
                     </div>
                   </div>
