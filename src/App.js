@@ -4,6 +4,7 @@ import { Delete, Edit } from "@material-ui/icons";
 import axios from "axios";
 import moment from "moment";
 import { PuffLoader } from "react-spinners";
+import Model from "./components/model";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class App extends React.Component {
       note: "",
       data: [],
       isLoading: true,
+      showModel: false,
+      updateData: {},
     };
   }
 
@@ -33,6 +36,20 @@ class App extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  closeModel() {
+    this.setState({
+      showModel: false,
+    });
+  }
+
+  openModel(data) {
+    this.setState({
+      showModel: true,
+      updateData: data,
+    });
+    console.log(data);
   }
 
   delete(str) {
@@ -136,6 +153,14 @@ class App extends React.Component {
             </div>
           </div>
         ) : null}
+        {this.state.showModel ? (
+          <Model
+            data={this.state.updateData}
+            close={() => {
+              this.closeModel();
+            }}
+          />
+        ) : null}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div className="topRow">
             <div className="expText">MY EXPENSES</div>
@@ -152,7 +177,9 @@ class App extends React.Component {
                   id="title"
                   placeholder="Title"
                   onChange={(e) => {
-                    this.setState({ title: e.target.value });
+                    this.setState({
+                      title: e.target.value,
+                    });
                   }}
                 ></input>
                 <span id="titlespan" className="nospanerr">
@@ -234,7 +261,12 @@ class App extends React.Component {
               <div className="list">
                 {this.state.data.map((e) => (
                   <div className="listEle" id={e.id}>
-                    <div className="listEleCorner">
+                    <div
+                      className="listEleCorner"
+                      onClick={() => {
+                        this.openModel(e);
+                      }}
+                    >
                       <Edit style={{ color: "rgba(225, 225, 225, 0.7)" }} />
                     </div>
                     <div className="listEleMain">
