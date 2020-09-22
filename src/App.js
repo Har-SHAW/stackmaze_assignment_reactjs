@@ -111,10 +111,10 @@ class App extends React.Component {
     }
 
     if (
+      document.getElementById("title").className === "" &&
       document.getElementById("amount").className === "" &&
-      document.getElementById("amount").className === "" &&
-      document.getElementById("amount").className === "" &&
-      document.getElementById("amount").className === ""
+      document.getElementById("note").className === "" &&
+      document.getElementById("date").className === ""
     ) {
       return true;
     } else {
@@ -203,7 +203,7 @@ class App extends React.Component {
                   }}
                 ></input>
                 <span id="notespan" className="nospanerr">
-                  Atleast 4 characters
+                  Atleast 8 characters
                 </span>
                 <input
                   id="date"
@@ -246,6 +246,11 @@ class App extends React.Component {
                           this.setState({
                             isLoading: false,
                           });
+
+                          document.getElementById("title").value = "";
+                          document.getElementById("amount").value = "";
+                          document.getElementById("note").value = "";
+                          document.getElementById("date").value = "";
                         })
                         .catch((response) => {
                           console.log(response.data);
