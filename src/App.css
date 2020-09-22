@@ -39,6 +39,7 @@
   .right {
     height: auto !important;
     width: 100vw !important;
+    padding-top: 0px !important;
   }
 
   .totalRow{
@@ -197,14 +198,14 @@ input {
 .right {
   width: 50vw;
   height: 70vw;
-  padding-top: 10vh;
+  padding-top: 8vh;
   padding-right: 10vw;
 }
 
 .leftContainer {
   display: flex;
   flex-direction: column;
-  padding-top: 10vh;
+  padding-top: 8vh;
 }
 
 .left {
@@ -237,7 +238,7 @@ input {
   margin-left: 10vw;
   margin-right: 10vw;
   align-items: center;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgba(225, 225, 225, 0.75);
 }
 
 .home {

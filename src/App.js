@@ -228,7 +228,7 @@ class App extends React.Component {
               <div
                 style={{
                   width: "1px",
-                  backgroundColor: "white",
+                  backgroundColor: "rgba(225, 225, 225, 0.75)",
                   height: "30px",
                   alignSelf: "flex-end",
                   marginLeft: "10px",
