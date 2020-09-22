@@ -18,6 +18,7 @@ class App extends React.Component {
       isLoading: true,
       showModel: false,
       updateData: {},
+      total: "",
     };
   }
 
@@ -28,7 +29,7 @@ class App extends React.Component {
     axios
       .get("https://stackmaze.herokuapp.com/expenses")
       .then((response) => {
-        console.log(response.data);
+        this.updateTotal(response.data);
         this.setState({
           data: response.data,
           isLoading: false,
@@ -42,6 +43,16 @@ class App extends React.Component {
   closeModel() {
     this.setState({
       showModel: false,
+    });
+  }
+
+  updateTotal(data) {
+    let total = 0;
+    for (let i = 0; i < data.length; i++) {
+      total += parseInt(data[i].amount);
+    }
+    this.setState({
+      total: total,
     });
   }
 
@@ -59,6 +70,45 @@ class App extends React.Component {
     });
   }
 
+  add() {
+    if (this.validate()) {
+      this.setState({
+        isLoading: true,
+      });
+      const headers = {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      };
+      const data = {
+        title: this.state.title,
+        date: this.state.date,
+        note: this.state.note,
+        amount: this.state.amount,
+      };
+      console.log("validated");
+
+      axios
+        .post("https://stackmaze.herokuapp.com/expenses", data, {
+          headers: headers,
+        })
+        .then((response) => {
+          this.updateTotal(response.data);
+          this.setState({
+            isLoading: false,
+            data: response.data,
+          });
+
+          document.getElementById("title").value = "";
+          document.getElementById("amount").value = "";
+          document.getElementById("note").value = "";
+          document.getElementById("date").value = "";
+        })
+        .catch((response) => {
+          console.log(response.data);
+        });
+    }
+  }
+
   delete(str) {
     if (str !== "") {
       this.setState({
@@ -67,6 +117,7 @@ class App extends React.Component {
       axios
         .delete(`https://stackmaze.herokuapp.com/expenses/${str}`)
         .then((response) => {
+          this.updateTotal(response.data);
           this.setState({
             isLoading: false,
             data: response.data,
@@ -174,7 +225,7 @@ class App extends React.Component {
             <div className="expText">MY EXPENSES</div>
             <div className="totalRow">
               <label className="totText">Total</label>
-              <label className="totText">4500</label>
+              <label className="totText">{this.state.total}</label>
             </div>
           </div>
 
@@ -226,45 +277,7 @@ class App extends React.Component {
                 <div
                   className="button"
                   onClick={() => {
-                    if (this.validate()) {
-                      this.setState({
-                        isLoading: true,
-                      });
-                      const headers = {
-                        "Access-Control-Allow-Origin": "*",
-                        "Content-Type": "application/json",
-                      };
-                      const data = {
-                        title: this.state.title,
-                        date: this.state.date,
-                        note: this.state.note,
-                        amount: this.state.amount,
-                      };
-                      console.log("validated");
-
-                      axios
-                        .post(
-                          "https://stackmaze.herokuapp.com/expenses",
-                          data,
-                          {
-                            headers: headers,
-                          }
-                        )
-                        .then((response) => {
-                          this.setState({
-                            isLoading: false,
-                            data: response.data,
-                          });
-
-                          document.getElementById("title").value = "";
-                          document.getElementById("amount").value = "";
-                          document.getElementById("note").value = "";
-                          document.getElementById("date").value = "";
-                        })
-                        .catch((response) => {
-                          console.log(response.data);
-                        });
-                    }
+                    this.add();
                   }}
                 >
                   ADD EXPENSE
