@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { Delete, Edit } from "@material-ui/icons";
 import axios from "axios";
+import moment from "moment";
 
 class App extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends React.Component {
   }
 
   validate() {
+    var formats = [moment.ISO_8601, "DD/MM/YYYY", "D/M/YY", "D/M/YYYY"];
     if (document.getElementById("title").value.length < 4) {
       document.getElementById("title").className = "err";
       document.getElementById("titlespan").className = "spanerr";
@@ -37,7 +39,9 @@ class App extends React.Component {
       document.getElementById("title").className = "";
     }
 
-    if (document.getElementById("date").value.length < 4) {
+    if (
+      !moment(document.getElementById("date").value, formats, true).isValid()
+    ) {
       document.getElementById("date").className = "err";
       document.getElementById("datespan").className = "spanerr";
     } else {
@@ -53,7 +57,10 @@ class App extends React.Component {
       document.getElementById("note").className = "";
     }
 
-    if (isNaN(document.getElementById("amount").value) || document.getElementById("amount").value === "") {
+    if (
+      isNaN(document.getElementById("amount").value) ||
+      document.getElementById("amount").value === ""
+    ) {
       document.getElementById("amount").className = "err";
       document.getElementById("amountspan").className = "spanerr";
     } else {
@@ -95,7 +102,9 @@ class App extends React.Component {
                     this.setState({ title: e.target.value });
                   }}
                 ></input>
-                <span id="titlespan" className="nospanerr">Atleast 4 characters</span>
+                <span id="titlespan" className="nospanerr">
+                  Atleast 4 characters
+                </span>
                 <input
                   id="amount"
                   placeholder="Amount"
@@ -103,7 +112,9 @@ class App extends React.Component {
                     this.setState({ amount: e.target.value });
                   }}
                 ></input>
-                <span id="amountspan" className="nospanerr">Must be a valid amount</span>
+                <span id="amountspan" className="nospanerr">
+                  Must be a valid amount
+                </span>
                 <input
                   id="note"
                   placeholder="Note"
@@ -111,7 +122,9 @@ class App extends React.Component {
                     this.setState({ note: e.target.value });
                   }}
                 ></input>
-                <span id="notespan" className="nospanerr">Atleast 4 characters</span>
+                <span id="notespan" className="nospanerr">
+                  Atleast 4 characters
+                </span>
                 <input
                   id="date"
                   placeholder="Date (DD/MM/YYYY)"
@@ -119,7 +132,9 @@ class App extends React.Component {
                     this.setState({ date: e.target.value });
                   }}
                 ></input>
-                <span id="datespan" className="nospanerr">atleast 4 characters</span>
+                <span id="datespan" className="nospanerr">
+                  Must be a valid date
+                </span>
                 <div
                   className="button"
                   onClick={() => {
