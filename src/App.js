@@ -225,12 +225,22 @@ class App extends React.Component {
             <div className="expText">MY EXPENSES</div>
             <div className="totalRow">
               <label className="totText">Total</label>
+              <div
+                style={{
+                  width: "1px",
+                  backgroundColor: "white",
+                  height: "30px",
+                  alignSelf: "flex-end",
+                  marginLeft: "10px",
+                  marginRight: "10px",
+                }}
+              ></div>
               <label className="totText">{this.state.total}</label>
             </div>
           </div>
 
-          <div className="left">
-            <div style={{ width: "50vw", height: "70vw" }}>
+          <div className="bottomrow">
+            <div className="left">
               <div className="leftContainer">
                 <input
                   id="title"

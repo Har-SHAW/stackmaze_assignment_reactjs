@@ -1,3 +1,55 @@
+@media only screen and (max-width: 768px) {
+  .bottomrow {
+    display: flex;
+    flex-direction: column !important;
+    height: auto !important;
+    margin-left: 10vw;
+  }
+
+  .home {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  .left {
+    height: auto !important;
+    width: 100vw !important;
+  }
+
+  .expText{
+    margin-top: 10vh !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .topRow{
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  input {
+    width: 70% !important;
+  }
+
+  .listEle {
+    width: 75% !important;
+  }
+
+  .right {
+    height: auto !important;
+    width: 100vw !important;
+  }
+
+  .totalRow{
+    width: 40vw !important;
+  }
+
+  .button{
+    width: 70% !important;
+  }
+}
+
 .expText {
   font-size: 40px;
   letter-spacing: 0.3px;
@@ -7,6 +59,7 @@
   font-weight: bold;
   text-transform: uppercase;
   opacity: 1;
+  margin-bottom: 5vh;
 }
 
 .totText {
@@ -126,7 +179,7 @@ input {
   overflow-y: auto;
   overflow-x: hidden;
   height: 70vh;
-  width: 40vw;
+  /*width: 40vw;*/
   scrollbar-width: none;
 }
 
@@ -155,6 +208,11 @@ input {
 }
 
 .left {
+  height: 70vh;
+  width: 50vw;
+}
+
+.bottomrow {
   display: flex;
   flex-direction: row;
   height: 70vh;
@@ -168,12 +226,13 @@ input {
   width: 15vw;
   height: 20vh;
   align-items: center;
+  margin-bottom: 5vh;
 }
 
 .topRow {
   display: flex;
   flex-direction: row;
-  height: 20vh;
+  height: 25vh;
   justify-content: space-between;
   margin-left: 10vw;
   margin-right: 10vw;
