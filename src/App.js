@@ -14,6 +14,7 @@ class App extends React.Component {
       date: "",
       note: "",
       data: [],
+      amount: "",
       isLoading: true,
       showModel: false,
       updateData: {},
@@ -52,6 +53,12 @@ class App extends React.Component {
     console.log(data);
   }
 
+  setUpdatedData(data) {
+    this.setState({
+      data: data,
+    });
+  }
+
   delete(str) {
     if (str !== "") {
       this.setState({
@@ -60,9 +67,9 @@ class App extends React.Component {
       axios
         .delete(`https://stackmaze.herokuapp.com/expenses/${str}`)
         .then((response) => {
-          console.log(response.data);
           this.setState({
             isLoading: false,
+            data: response.data,
           });
         })
         .catch((response) => {
@@ -156,6 +163,7 @@ class App extends React.Component {
         {this.state.showModel ? (
           <Model
             data={this.state.updateData}
+            setData={(data) => this.setUpdatedData(data)}
             close={() => {
               this.closeModel();
             }}
@@ -230,6 +238,7 @@ class App extends React.Component {
                         title: this.state.title,
                         date: this.state.date,
                         note: this.state.note,
+                        amount: this.state.amount,
                       };
                       console.log("validated");
 
@@ -242,9 +251,9 @@ class App extends React.Component {
                           }
                         )
                         .then((response) => {
-                          console.log(response.data);
                           this.setState({
                             isLoading: false,
+                            data: response.data,
                           });
 
                           document.getElementById("title").value = "";
@@ -278,7 +287,7 @@ class App extends React.Component {
                       <div className="date">{e.date}</div>
                       <div className="titleRow">
                         <div className="title">{e.title}</div>
-                        <div className="amount">$50,000</div>
+                        <div className="amount">{e.amount}</div>
                       </div>
                       <div className="note">
                         <label

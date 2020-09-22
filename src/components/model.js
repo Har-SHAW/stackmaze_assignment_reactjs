@@ -10,7 +10,7 @@ class Model extends React.Component {
       title: this.props.data.title,
       date: this.props.data.date,
       note: this.props.data.note,
-      amount: "200",
+      amount: this.props.data.amount,
       isLoading: false,
     };
   }
@@ -169,6 +169,7 @@ class Model extends React.Component {
                       title: this.state.title,
                       date: this.state.date,
                       note: this.state.note,
+                      amount: this.state.amount,
                     };
                     console.log("validated");
 
@@ -181,7 +182,7 @@ class Model extends React.Component {
                         }
                       )
                       .then((response) => {
-                        console.log(response.data);
+                        this.props.setData(response.data);
                         this.setState({
                           isLoading: false,
                         });
