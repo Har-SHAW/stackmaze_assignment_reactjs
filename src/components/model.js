@@ -18,7 +18,7 @@ class Model extends React.Component {
     document.getElementById("titleModel").value = this.props.data.title;
     document.getElementById("dateModel").value = this.props.data.date;
     document.getElementById("noteModel").value = this.props.data.note;
-    document.getElementById("amountModel").value = "200";
+    document.getElementById("amountModel").value = this.props.data.amount;
   }
 
   validate() {
@@ -194,7 +194,7 @@ class Model extends React.Component {
                   }
                 }}
               >
-                UPDATE EXPENSE
+                UPDATE
               </div>
               <div
                 className="button"

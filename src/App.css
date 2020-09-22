@@ -16,13 +16,13 @@
     width: 100vw !important;
   }
 
-  .expText{
+  .expText {
     margin-top: 10vh !important;
     width: 100% !important;
     text-align: center !important;
   }
 
-  .topRow{
+  .topRow {
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
@@ -39,15 +39,38 @@
   .right {
     height: auto !important;
     width: 100vw !important;
-    padding-top: 0px !important;
+    padding-top: 10vh !important;
   }
 
-  .totalRow{
+  .totalRow {
     width: 40vw !important;
   }
 
-  .button{
+  .button {
     width: 70% !important;
+  }
+
+  .date {
+    font-size: 10px !important;
+  }
+
+  .title {
+    font-size: 15px !important;
+  }
+
+  .amount {
+    font-size: 15px !important;
+  }
+
+  .note {
+    font-size: 10px !important;
+  }
+
+  .button{
+    font-size: 10px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -83,18 +106,27 @@
 input {
   margin-bottom: 10px;
   width: 25vw;
+  border: 0;
   border: 1px solid white;
-  background-color: transparent;
+  background: transparent;
   padding: 15px;
   border-radius: 5px;
   color: white;
 }
 
+input:focus {
+  background: transparent;
+  border: 0;
+}
+
 .nospanerr {
-  margin-bottom: 10px;
   font-size: 12px;
   color: lightsalmon;
   visibility: collapse;
+}
+
+::placeholder {
+  color: rgba(225, 225, 225, 0.85);
 }
 
 .spanerr {
@@ -191,7 +223,7 @@ input {
   border-radius: 20px;
   text-align: center;
   font-weight: bolder;
-  margin-top: 5vh;
+  margin-top: 2vh;
   cursor: pointer;
 }
 
