@@ -6,6 +6,7 @@ import { PuffLoader } from "react-spinners";
 import Model from "./components/model";
 import Input from "./components/input";
 import ErrorModel from "./components/error";
+const crypto = require("crypto");
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class App extends React.Component {
       isLoading: true,
     });
     axios
-      .get("https://stackmaze.herokuapp.com/expenses")
+      .get(process.env.REACT_APP_API)
       .then((response) => {
         this.updateTotal(response.data);
         this.setState({
@@ -73,17 +74,22 @@ class App extends React.Component {
   }
 
   add(data) {
+    const secret = process.env.REACT_APP_KEY;
+    const shasum = crypto.createHmac("sha256", secret);
+    shasum.update(JSON.stringify(data));
+    const digest = shasum.digest("hex");
     this.setState({
       isLoading: true,
     });
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
+      "react-signature": digest,
     };
     console.log("validated");
 
     axios
-      .post("https://stackmaze.herokuapp.com/expenses", data, {
+      .post(process.env.REACT_APP_API, data, {
         headers: headers,
       })
       .then((response) => {
@@ -123,7 +129,7 @@ class App extends React.Component {
         isLoading: true,
       });
       axios
-        .delete(`https://stackmaze.herokuapp.com/expenses/${str}`)
+        .delete(process.env.REACT_APP_API + `/${str}`)
         .then((response) => {
           this.updateTotal(response.data);
           this.setState({

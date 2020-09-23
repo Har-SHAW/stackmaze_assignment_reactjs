@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import moment from "moment";
 import { PuffLoader } from "react-spinners";
+const crypto = require("crypto");
 
 class Model extends React.Component {
   constructor(props) {
@@ -92,7 +93,7 @@ class Model extends React.Component {
         }}
       >
         {this.state.isLoading ? (
-          <PuffLoader color="white"/>
+          <PuffLoader color="white" />
         ) : (
           <div
             style={{
@@ -104,7 +105,7 @@ class Model extends React.Component {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              borderRadius: "20px"
+              borderRadius: "20px",
             }}
           >
             <input
@@ -162,21 +163,24 @@ class Model extends React.Component {
                     this.setState({
                       isLoading: true,
                     });
-                    const headers = {
-                      "Access-Control-Allow-Origin": "*",
-                      "Content-Type": "application/json",
-                    };
                     const data = {
                       title: this.state.title,
                       date: this.state.date,
                       note: this.state.note,
                       amount: this.state.amount,
                     };
-                    console.log("validated");
+                    const secret = process.env.REACT_APP_KEY;
+                    const shasum = crypto.createHmac("sha256", secret);
+                    shasum.update(JSON.stringify(data));
+                    const digest = shasum.digest("hex");
+                    const headers = {
+                      "Access-Control-Allow-Origin": "*",
+                      "react-signature": digest
+                    };
 
                     axios
                       .put(
-                        `https://stackmaze.herokuapp.com/expenses/${this.props.data.id}`,
+                        process.env.REACT_APP_API + `/${this.props.data.id}`,
                         data,
                         {
                           headers: headers,
