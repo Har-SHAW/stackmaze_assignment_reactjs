@@ -104,6 +104,7 @@ class Model extends React.Component {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              borderRadius: "20px"
             }}
           >
             <input
@@ -188,8 +189,8 @@ class Model extends React.Component {
                         });
                         this.props.close();
                       })
-                      .catch((response) => {
-                        console.log(response.data);
+                      .catch(() => {
+                        this.props.error();
                       });
                   }
                 }}

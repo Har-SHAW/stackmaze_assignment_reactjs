@@ -5,6 +5,7 @@ import axios from "axios";
 import { PuffLoader } from "react-spinners";
 import Model from "./components/model";
 import Input from "./components/input";
+import ErrorModel from "./components/error";
 
 class App extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class App extends React.Component {
       showModel: false,
       updateData: {},
       total: "",
+      isError: "",
     };
   }
 
@@ -35,8 +37,8 @@ class App extends React.Component {
           isLoading: false,
         });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        this.Error();
       });
   }
 
@@ -96,9 +98,23 @@ class App extends React.Component {
         document.getElementById("note").value = "";
         document.getElementById("date").value = "";
       })
-      .catch((response) => {
-        console.log(response.data);
+      .catch(() => {
+        this.Error();
       });
+  }
+
+  Error() {
+    this.setState({
+      isError: true,
+      showModel: false,
+      isLoading: false,
+    });
+  }
+
+  noError() {
+    this.setState({
+      isError: false,
+    });
   }
 
   delete(str) {
@@ -115,8 +131,8 @@ class App extends React.Component {
             data: response.data,
           });
         })
-        .catch((response) => {
-          console.log(response.data);
+        .catch(() => {
+          this.Error();
         });
     }
   }
@@ -141,12 +157,22 @@ class App extends React.Component {
             <PuffLoader color="white" />
           </div>
         ) : null}
+        {this.state.isError ? (
+          <ErrorModel
+            noError={() => {
+              this.noError();
+            }}
+          />
+        ) : null}
         {this.state.showModel ? (
           <Model
             data={this.state.updateData}
             setData={(data) => this.setUpdatedData(data)}
             close={() => {
               this.closeModel();
+            }}
+            error={() => {
+              this.Error();
             }}
           />
         ) : null}
