@@ -92,7 +92,7 @@ class Model extends React.Component {
         }}
       >
         {this.state.isLoading ? (
-          <PuffLoader />
+          <PuffLoader color="white"/>
         ) : (
           <div
             style={{
