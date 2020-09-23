@@ -13,9 +13,9 @@ The deployment of the application is done in hearoku web services
 
 For demo of the application please visite https://stackmaze.herokuapp.com
 
-### `API KEYS OF FIREBASE`
+### `API's AND KEYS OF BACKEND`
 
-API KEYS for firebase are hidden in heroku enviranment variables to ensure the security properties are well implemented
+API's AND KEYS for Backend are hidden in .env to ensure the security properties are well implemented
 
 ### `Intigrity`
 
